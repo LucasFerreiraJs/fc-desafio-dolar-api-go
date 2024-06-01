@@ -24,12 +24,12 @@ func Connection() {
 
 }
 
-func RegisterDolarDB(ctx context.Context, valor string) {
+func RegisterDolarDB(ctx context.Context, value string) {
 
 	select {
 	case <-time.After(10 * time.Millisecond):
 		db.Create(&dto.Dolar{
-			Valor: valor,
+			Valor: value,
 		})
 
 		log.Println("Valor registrado com sucesso")

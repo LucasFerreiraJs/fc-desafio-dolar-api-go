@@ -38,12 +38,12 @@ func RequestDollarValue(ctx context.Context, url string) (*dto.CotacaoDolar, err
 			fmt.Fprintf(os.Stderr, "Erro ao fazer parse da informação %v\n", err)
 			return nil, err
 		}
-		fmt.Println(resultCotacao)
+		// fmt.Println(resultCotacao)
 
 		return &resultCotacao, nil
 
 	case <-ctx.Done():
 		log.Println("Request cancelada")
-		return nil, errors.New("this is an error")
+		return nil, errors.New("Request cancelada")
 	}
 }

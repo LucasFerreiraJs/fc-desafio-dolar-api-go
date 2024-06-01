@@ -7,14 +7,14 @@ import (
 
 func SaveToFile(value string) {
 
-	file, err := os.Create("arquivo.txt")
+	file, err := os.Create("cotacao.txt")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Erro ao criar arquivo %v\n", err)
 	}
 
-	var valorAtual = fmt.Sprintf("Dolar : %v", value)
-	print(valorAtual)
-	_, err = file.WriteString(valorAtual)
+	var curentValue = fmt.Sprintf("Dolar : %v", value)
+	print(curentValue)
+	_, err = file.WriteString(curentValue)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Erro ao registrar informação no arquivo %v\n", err)
 	}

@@ -2,8 +2,8 @@ package main
 
 import (
 	"cotacaoModulo/db"
-	"cotacaoModulo/register"
 	"cotacaoModulo/request"
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -29,12 +29,22 @@ func handleCotacao(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Erro ao fazer requisição %v\n", err)
 	}
+
+	w.Header().Set("Content-Type", "application/json")
+
+	resBytes, err := json.Marshal(res)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Erro ao formatar response %v\n", err)
+	}
+
+	w.Write([]byte(resBytes))
+	print("res")
+	print("\n")
+	fmt.Println(res)
+
 	print("\n")
 	print("Registrando...")
 	print("\n")
-	fmt.Printf(res.Name)
-	print("\n")
 
 	db.RegisterDolarDB(ctx, res.Bid)
-	register.SaveToFile(res.Bid)
 }
